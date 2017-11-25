@@ -1,0 +1,36 @@
+{
+  "name": "souffle",
+  "version": "1.0.0",
+  "description": "Souffle site v2",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Souffle Media",
+  "license": "ISC",
+  "dependencies": {
+    "babel-loader": "^7.1.2",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "helmet": "^3.9.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.6",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "compression": "^1.7.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.1",
+    "express-flash": "^0.0.2",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^2.30.1",
+    "path": "^0.12.7",
+    "webpack": "^3.8.1",
+    "webpack-dev-middleware": "^1.12.1",
+    "webpack-hot-middleware": "^2.20.0",
+    "webpack-md5-hash": "^0.0.5"
+  }
+}
