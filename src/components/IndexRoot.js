@@ -11,12 +11,13 @@ export default class Root extends Component {
     const contentStyle = {
       minHeight: document.innerWidth //document.getElementsByTagName('body')[0].clientWidth
     };
-    const sage = {
-      name: 'sage'
-    };
+
+    let user = {
+      name: localStorage.getItem("user")
+    }
     return (
       <div className="content" style={contentStyle}>
-        <Header isLoggedIn={true} user={sage} />
+        <Header user={user} />
         <BrowserRouter basename="/">
           <App/>
         </BrowserRouter>

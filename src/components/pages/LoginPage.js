@@ -1,10 +1,13 @@
 import React from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router';
+
 
 export default class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loggedIn: false,
       tfa_mode: false,
       login_name: '',
       login_pass: '',
@@ -57,21 +60,30 @@ export default class LoginPage extends React.Component {
       default:
         return;
     }
+
+
     axios.post('/login', options)
       .then((response) => {
         if (response.status === 200) {
           if (response.data.tfa) {
             this.setState({tfa_mode: true});
             return;
+          } else if (response.data.cookies) {
+            localStorage.setItem("user", response.data.cookies.username)
+            this.setState({loggedIn: true});
           }
         }
       })
   }
 
   render() {
-    let tfa = this.state.tfa_mode;
+    const tfa = this.state.tfa_mode;
+    const loggedIn = this.state.loggedIn;
     return (
       <div className="login-container">
+      { loggedIn &&
+        <Redirect to="/"/>
+      }
       { !tfa &&
         <div className="login">
           <div className="login-title">Login or Register</div>
@@ -109,6 +121,7 @@ export default class LoginPage extends React.Component {
             <input className="form-button" name="tfa_submit" type="submit" onClick={ this.handleSubmit }/>
           </form>
         </div>
+
 
       }
 

@@ -129,3 +129,17 @@ $rn-gray: #222;
   padding-bottom: 50px;
   border-bottom: 2px solid black;
 }
+
+
+.settings-container {
+  width: 40%;
+  margin: auto;
+  margin-top: 25px;
+  //display: inline-block;
+  text-align:center;
+  font-size: 20px;
+
+  .form-button {
+    margin: 15px;
+  }
+}

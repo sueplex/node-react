@@ -19,14 +19,18 @@ routeConfig(app);
 
 app.use((err, req, res, next) => {
   if (err) {
-    console.log(err);
     return res.status(500).send(err);
   }
   next();
 })
 
 app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname, '../src/index.html'))
+  let asset = req.url.replace("/", "");
+  let prefix = asset.split(".")[0]
+  if (prefix !== "main") {
+    asset = "index.html";
+  }
+  res.sendFile(path.join(__dirname, '../public/assets/dist', asset));
 });
 
 app.listen(process.env.PORT);
