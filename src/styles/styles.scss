@@ -59,39 +59,6 @@ $rn-gray: #222;
   }
 }
 
-.footer {
-  color: $rn-blue;
-  width: 100%;
-  height: 5%;
-  background-color: $rn-gray;
-  position: absolute;
-  bottom: 0;
-  a {
-    text-decoration: none;
-  }
-  .foot-brand {
-    font-size: 20px;
-    display: inline-block;
-    margin: 15px 25px 5px 45px;
-  }
-  .foot-gh {
-    font-size:20px;
-    display: inline-block;
-    margin:15px 45px 5px 25px;
-    float: right;
-
-    .right {
-      float: right;
-    }
-
-    a {
-      color: $rn-blue;
-      text-decoration: none;
-    }
-  }
-}
-
-
 .login-title {
   font-size: 35px;
   text-align: center;
@@ -142,4 +109,27 @@ $rn-gray: #222;
   .form-button {
     margin: 15px;
   }
+}
+
+.cover {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height:100%;
+  z-index: 9001;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.cover-content{
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  opacity: 1;
+  margin-top: -150px;
+  margin-bottom: -150px;
+  z-index: 9101;
+  background: blue;
 }

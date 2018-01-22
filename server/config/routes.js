@@ -1,6 +1,4 @@
-import controllers from '../controllers';
+/* eslint-disable  */
 
 export default (app) => {
-  app.post('/login', controllers.account.login);
-  app.post('/tfa', controllers.account.tfa_setup);
 }

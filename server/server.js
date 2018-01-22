@@ -23,14 +23,19 @@ app.use((err, req, res, next) => {
   }
   next();
 })
-
-app.get('*', (req, res) => {
-  let asset = req.url.replace("/", "");
-  let prefix = asset.split(".")[0]
-  if (prefix !== "main") {
-    asset = "index.html";
-  }
-  res.sendFile(path.join(__dirname, '../public/assets/dist', asset));
-});
+if (process.env.NODE_ENV !== 'development') {
+  app.get('*', (req, res) => {
+    let asset = req.url.replace("/", "");
+    let prefix = asset.split(".")[0]
+    if (prefix !== "main") {
+      asset = "index.html";
+    }
+    res.sendFile(path.join(__dirname, '../public/assets/dist', asset));
+  });
+} else {
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../src/index.html'));
+  })
+}
 
 app.listen(process.env.PORT);

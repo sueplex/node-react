@@ -10,8 +10,7 @@ export default class Header extends React.Component {
   }
 
   render() {
-    console.log(this.props);
-    const isLoggedIn = this.state.user.name ? true:false;
+
     return (
       <div className="header">
         <a className="nav-brand" href="#">React </a>
@@ -23,16 +22,6 @@ export default class Header extends React.Component {
             <li className="navbar-item">
               <a className="nav-link" href="#">About</a>
             </li>
-          { isLoggedIn && this.state.user &&
-              <li className="navbar-item right">
-                <a className="nav-link" href="/settings">{this.state.user.name}</a>
-              </li>
-          }
-          { !isLoggedIn &&
-            <li className="navbar-item right">
-              <a className="nav-link" href="/login">Login</a>
-            </li>
-          }
           </ul>
         </div>
       </div>

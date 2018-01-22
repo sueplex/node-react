@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Footer, App } from './common';
+import { Header, App } from './common';
 import { BrowserRouter } from 'react-router-dom';
 //import Home from './home';
 //import Sage from './sage';
@@ -9,7 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 export default class Root extends Component {
   render() {
     const contentStyle = {
-      minHeight: document.innerWidth //document.getElementsByTagName('body')[0].clientWidth
+      minHeight: window.innerWidth //document.getElementsByTagName('body')[0].clientWidth
     };
 
     let user = {
@@ -21,7 +21,6 @@ export default class Root extends Component {
         <BrowserRouter basename="/">
           <App/>
         </BrowserRouter>
-        <Footer />
       </div>
     );
   }

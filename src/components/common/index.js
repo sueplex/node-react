@@ -1,9 +1,9 @@
 import Header from './Header';
-import Footer from './Footer';
+import Cover from './Cover';
 import App from './App';
 
 export {
   Header,
-  Footer,
+  Cover,
   App
 };
