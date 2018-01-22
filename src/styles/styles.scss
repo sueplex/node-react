@@ -1,0 +1,135 @@
+$rn-blue: rgb(97, 218, 251);
+$rn-gray: #222;
+
+.header {
+  width: 100%;
+  background-color: $rn-gray;
+  a {
+    color: $rn-blue;
+    text-decoration: none;
+
+    &:hover {
+      color: rgb(77, 180, 205);
+
+    }
+  }
+
+  .header-nav {
+    display: inline;
+    padding: 15px 25px 25px 25px;
+    width: 100%;
+    display: inline-block;
+  }
+  .nav-brand {
+    display: inline-block;
+    margin: 25px 0px 0px 25px;
+    width: 15%;
+    left: 5px;
+    font-size: 38px;
+  }
+  .nav-nav {
+    position: absolute;
+    display: inline-block;
+    height: 25%;
+    width: 80%;
+    position: relative;
+  }
+  .navbar {
+    display: inline-block;
+    min-width: 100%;
+    display:inline-block;
+    margin-right:0;
+    list-style-type: none;
+    margin:0;
+    padding: 0;
+
+    .right {
+      float: right;
+      margin-left: 0;
+      padding-right: 15px;
+      font-size: 20px;
+      display: inline;
+    }
+    .navbar-item {
+      display: inline-block;
+      margin-left: 15px;
+      font-size: 25px;
+      text-decoration: none;
+    }
+  }
+}
+
+.login-title {
+  font-size: 35px;
+  text-align: center;
+  display: block;
+}
+
+.login-form {
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 55px;
+  width: 25%;
+  text-align: center;
+  font-size: 20px;
+
+  .form-title {
+    font-size: 25px;
+
+  }
+
+  .form-label {
+
+  }
+
+  .form-field {
+    width: 100%;
+    margin-top: -5px;
+    margin-bottom: 25px;
+  }
+
+
+}
+
+#login {
+  margin-bottom: 0px;
+  padding-bottom: 50px;
+  border-bottom: 2px solid black;
+}
+
+
+.settings-container {
+  width: 40%;
+  margin: auto;
+  margin-top: 25px;
+  //display: inline-block;
+  text-align:center;
+  font-size: 20px;
+
+  .form-button {
+    margin: 15px;
+  }
+}
+
+.cover {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height:100%;
+  z-index: 9001;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.cover-content{
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  opacity: 1;
+  margin-top: -150px;
+  margin-bottom: -150px;
+  z-index: 9101;
+  background: blue;
+}
