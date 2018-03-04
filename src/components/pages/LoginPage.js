@@ -7,14 +7,11 @@ export default class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: false,
-      tfa_mode: false,
-      login_name: '',
+      login_email: '',
       login_pass: '',
-      reg_name: '',
+      reg_email: '',
       reg_pass: '',
       reg_pass_confirm: '',
-      login_tfa: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -30,50 +27,38 @@ export default class LoginPage extends React.Component {
   handleSubmit(e) {
     if(e){ e.preventDefault(); }
     let options = {};
+
     switch (e.target.name) {
-      case 'reg_submit':
-        if (this.state.reg_pass !== this.state.reg_pass_confirm){ return; }
-        options = {
-          action: 'register',
-          name: this.state.reg_name,
-          pass: this.state.reg_pass,
-          pass_confirm: this.state.reg_pass_confirm
-        };
-        break;
       case 'login_submit':
         options = {
-          action: 'login',
-          name: this.state.login_name,
-          pass: this.state.login_pass
+          email: this.state.login_email,
+          password: this.state.login_pass,
         };
-       break;
+        axios.post('/login', options)
+          .then((response) => {
+            if (response.status === 200) {
 
-      case 'tfa_submit':
+            }
+          })
+        break;
+
+      case 'reg_submit':
         options = {
-          action: 'tfa',
-          tfa_code: this.state.login_tfa,
-          name: this.state.login_name,
-          pass: this.state.login_pass
-        }
+          email: this.state.reg_email,
+          password: this.state.reg_pass,
+          confirm_password: this.state.reg_pass_confirm
+        };
+        axios.post('/register', options)
+          .then((response) => {
+            if (response.status === 200) {
+
+            }
+          })
         break;
 
       default:
         return;
     }
-
-
-    axios.post('/login', options)
-      .then((response) => {
-        if (response.status === 200) {
-          if (response.data.tfa) {
-            this.setState({tfa_mode: true});
-            return;
-          } else if (response.data.cookies) {
-            localStorage.setItem("user", response.data.cookies.username)
-            this.setState({loggedIn: true});
-          }
-        }
-      })
   }
 
   render() {
@@ -90,8 +75,8 @@ export default class LoginPage extends React.Component {
 
           <form className="login-form" id="login" action="">
             <p className="form-title"> Login </p>
-            <label className="form-label" htmlFor="login_name">Username</label>
-            <input className="form-field" type="text" name="login_name" onChange={ this.handleChange }/>
+            <label className="form-label" htmlFor="login_email">Email</label>
+            <input className="form-field" type="text" name="login_email" onChange={ this.handleChange }/>
             <label className="form-label" htmlFor="login_pass">Password</label>
             <input className="form-field" type="password" name="login_pass" onChange={ this.handleChange }/>
 
@@ -100,8 +85,8 @@ export default class LoginPage extends React.Component {
 
           <form className="login-form" id="registration" action="">
             <p className="form-title"> Register </p>
-            <label className="form-label" htmlFor="reg_name">Username</label>
-            <input className="form-field" type="text" name="reg_name" onChange={ this.handleChange }/>
+            <label className="form-label" htmlFor="reg_email">Email</label>
+            <input className="form-field" type="text" name="reg_email" onChange={ this.handleChange }/>
             <label className="form-label" htmlFor="reg_pass">Password</label>
             <input className="form-field" type="password" name="reg_pass" onChange={ this.handleChange }/>
             <label className="form-label" htmlFor="reg_pass_confirm">Confirm Password</label>
