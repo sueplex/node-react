@@ -14,6 +14,22 @@ if (process.env.NODE_ENV !== 'production') {
 	devConfig(app);
 }
 expressConfig(app);
+
+app.use((req, res, next) => {
+  if (req.session.ua){
+    if (req.session.ua !== req.headers['user-agent']) {
+      req.session.regenerate((err) => {
+        if (err) {
+          console.log(err);
+        }
+      })
+    }
+  } else {
+    req.session.ua = req.headers['user-agent'];
+  }
+  next();
+});
+
 routeConfig(app);
 
 
@@ -21,21 +37,8 @@ app.use((err, req, res, next) => {
   if (err) {
     return res.status(500).send(err);
   }
+
   next();
 })
-if (process.env.NODE_ENV !== 'development') {
-  app.get('*', (req, res) => {
-    let asset = req.url.replace("/", "");
-    let prefix = asset.split(".")[0]
-    if (prefix !== "main") {
-      asset = "index.html";
-    }
-    res.sendFile(path.join(__dirname, '../public/assets/dist', asset));
-  });
-} else {
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../src/index.html'));
-  })
-}
 
 app.listen(process.env.PORT);

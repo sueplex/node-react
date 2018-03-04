@@ -1,27 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export default class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user:this.props.user
-    };
-  }
 
   render() {
-
     return (
       <div className="header">
         <a className="nav-brand" href="#">React </a>
         <div className="nav-nav">
           <ul className="navbar">
+          { !this.props.user &&
             <li className="navbar-item">
-              <a className="nav-link" href="#">Home</a>
+              <Link className="nav-link" to="/login"> Login </Link>
             </li>
-            <li className="navbar-item">
-              <a className="nav-link" href="#">About</a>
-            </li>
+          }
           </ul>
         </div>
       </div>
@@ -30,5 +23,8 @@ export default class Header extends React.Component {
 }
 
 Header.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.bool,
+  ])
 };

@@ -1,25 +1,45 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Header, App } from './common';
 import { BrowserRouter } from 'react-router-dom';
-//import Home from './home';
-//import Sage from './sage';
-//import { BrowserRouter as Router, Route} from 'react-router';
 
 
 export default class Root extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: false
+    };
+  }
+
+  componentWillMount() {
+    axios.post('/me')
+      .then((res) => {
+        if (res.status === 200) {
+          if (res.data.user) {
+            this.setState({
+              user: res.data.user
+            });
+          }
+        }
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+
   render() {
     const contentStyle = {
-      minHeight: window.innerWidth //document.getElementsByTagName('body')[0].clientWidth
+      minHeight: window.innerWidth
     };
-
-    let user = {
-      name: localStorage.getItem("user")
-    }
     return (
       <div className="content" style={contentStyle}>
-        <Header user={user} />
         <BrowserRouter basename="/">
-          <App/>
+          <div>
+            <Header user={this.state.user} />
+            <App user={this.state.user} />
+          </div>
         </BrowserRouter>
       </div>
     );
